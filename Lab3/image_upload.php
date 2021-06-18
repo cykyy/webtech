@@ -13,9 +13,6 @@
           padding: 20px;
 
         }
-        .form{
-
-        }
 
         .make-it-center{
           margin: auto;
@@ -24,10 +21,6 @@
 
         .error{
         	color: red;
-        }
-
-        .lefterr{
-            margin-left: -10%;
         }
 
         .required:after {
@@ -39,12 +32,12 @@
 <body>
 <?php
 $imgErr = "";
-$target_dir = "/Users/rayhanmia/.bitnami/stackman/machines/xampp/volumes/root/htdocs/webtech/Lab3/uploads/";
-$target_file = $target_dir . basename($_FILES["image_to_up"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["image_to_up"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   $mime_type_arr = array('jpg', 'png', 'jpeg');
   if (in_array($imageFileType, $mime_type_arr)) {
   	// code...
