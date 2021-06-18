@@ -167,7 +167,7 @@ $errCount = 0;
  <!DOCTYPE html>  
  <html>  
       <head>  
-           <title></title>  
+           <title>User Registration</title>
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
@@ -194,7 +194,7 @@ $errCount = 0;
       <body>  
            <br />  
            <div class="container" style="width:500px;">  
-                <h3 align="">Append Data to JSON File</h3><br />                 
+                <h3 align="">Register a New Account</h3><br />
                 <form method="post">  
                      <?php   
                      if(isset($error))  
@@ -227,7 +227,7 @@ $errCount = 0;
                      <input type="date" name="dob"> <br><br>
                     </fieldset> 
                      
-                     <input type="submit" name="submit" value="Append" class="btn btn-info" /><br />                      
+                     <input type="submit" name="submit" value="Register" class="btn btn-info" /><br />
                      <?php  
                      if(isset($message))  
                      {  
