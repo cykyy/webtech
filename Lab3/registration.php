@@ -114,7 +114,19 @@ $errCount = 0;
 
           }
 
+     if (empty($_POST["gender"])) {
+         $genderErr = "Gender is required";
+         $errCount = $errCount + 1;
+     } else {
+         $gender = check_input($_POST["gender"]);
+     }
 
+     if (empty($_POST["dob"])) {
+         $dobErr = "Date of Birth is required";
+         $errCount = $errCount + 1;
+     } else {
+         $dob = $_POST["dob"];
+     }
 
 
       if($errCount > 0) {

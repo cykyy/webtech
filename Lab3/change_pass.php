@@ -13,9 +13,6 @@
           padding: 20px;
 
         }
-        .form{
-
-        }
 
         .make-it-center{
           margin: auto;
@@ -24,10 +21,6 @@
 
         .error{
         	color: red;
-        }
-
-        .lefterr{
-            margin-left: -10%;
         }
 
         .required:after {

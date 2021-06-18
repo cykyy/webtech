@@ -8,28 +8,17 @@
             background: #eeeaea;
           margin: auto;
           width: 20%;
-            
           border: 1px solid #3e3c3c;
           padding: 20px;
 
         }
-        .form{
-
-        }
-
         .make-it-center{
           margin: auto;
           width: 75%;
         }
-
         .error{
         	color: red;
         }
-
-        .lefterr{
-            margin-left: -10%;
-        }
-
         .required:after {
           content:"*";
           color: red;
@@ -80,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    	$errCount = $errCount + 1;	
 	    }
 
-    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[\d%$#@]).+$/", $password)) {
+    if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[%$#@]).+$/", $password)) {
     	/*
     	^ starts the string
 		(?=.*[a-z]) Atleast a lower case letter
@@ -93,6 +82,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    	$password ="";
 	    	$errCount = $errCount + 1;	
 	    }
+
+    if ($errCount < 1){
+
+        $strJsonFileContents = file_get_contents("data.json");
+        // var_dump($strJsonFileContents);
+
+        $arra = json_decode($strJsonFileContents);
+        // var_dump($arra);
+        $user_found = false;
+        foreach($arra as $item) { //foreach element in $arr
+            //echo "<br>";
+            //echo "username: ".$item->username;
+            //echo "<br>";
+            //echo "password: ".$item->password;
+            //echo "<br>";
+
+            if ($username === $item->username){
+                $user_found = true;
+                // match. now check pw
+                if ($password === $item->password){
+                    echo "Thanks for logging Mr. $item->name ... success!!";
+                    header('Refresh: 3; Location: dashboard.php');
+                    exit;
+                }else{
+                    $passErr .= "Password Wrong!";
+                }
+            }
+        }
+        if (!$user_found){
+            echo $userErr .= "No account found!";
+        }
+
+
+        //exit;
+
+    }
 
 }
 
