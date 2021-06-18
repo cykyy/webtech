@@ -1,14 +1,13 @@
 <?php
 // define variables and set to empty values
-$nameErr = $emailErr = $degreeErr = $genderErr = $userErr = $passErr = $confrmPassErr = "";
+$nameErr = $emailErr = $degreeErr = $genderErr = $userErr = $passErr = $confrmPassErr = $dobErr = "";
 $name = $email = $gender = $username = $password = $cnfrmPass = "";
 $dob = $successmsg = "";
 $dobdd = $dobmm = $dobyy = ""; 
 $errCount = 0;  
  $message = '';  
  $error = '';  
- if(isset($_POST["submit"]))  {  
-
+ if(isset($_POST["submit"]))  {
 
     if (empty($_POST["name"])) {
     $nameErr = "Name is required";
@@ -87,7 +86,7 @@ $errCount = 0;
           } else {
                if ($password != $cnfrmPass) {
                     // code...
-                    $confrmPassErr = "Confirm password is dosen't match with paassword!";
+                    $confrmPassErr = "Confirm password is didn't match with password!";
                     $errCount = $errCount + 1;
                }
           }
@@ -99,7 +98,7 @@ $errCount = 0;
                $errCount = $errCount + 1;    
               }
 
-         if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[\d%$#@]).+$/", $password)) {
+         if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[%$#@]).+$/", $password)) {
           /*
           ^ starts the string
                (?=.*[a-z]) Atleast a lower case letter
@@ -117,33 +116,10 @@ $errCount = 0;
 
 
 
-      if(empty($_POST["name"]))  
-      {  
-           $error = "<label class='text-danger'>Enter Name</label>";  
-      }
-      else if(empty($_POST["email"]))  
-      {  
-           $error = "<label class='text-danger'>Enter an e-mail</label>";  
-      }  
-      else if(empty($_POST["un"]))  
-      {  
-           $error = "<label class='text-danger'>Enter a username</label>";  
-      }  
-      else if(empty($_POST["pass"]))  
-      {  
-           $error = "<label class='text-danger'>Enter a password</label>";  
-      }
-      else if(empty($_POST["Cpass"]))  
-      {  
-           $error = "<label class='text-danger'>Confirm password field cannot be empty</label>";  
-      } 
-      else if(empty($_POST["gender"]))  
-      {  
-           $error = "<label class='text-danger'>Gender cannot be empty</label>";  
-      } 
-       
-      else  
-      {  
+
+      if($errCount > 0) {
+      echo "<span class='error'>One or more error occurred!</span>";
+      } else {
            if(file_exists('data.json'))  
            {  
                 $current_data = file_get_contents('data.json');  
@@ -151,15 +127,16 @@ $errCount = 0;
                 $extra = array(  
                      'name'               =>     $_POST['name'],  
                      'e-mail'          =>     $_POST["email"],  
-                     'username'     =>     $_POST["un"],  
-                     'gender'     =>     $_POST["gender"],  
+                     'username'     =>     $_POST["username"],
+                     'password'     =>     $_POST["password"],
+                     'gender'     =>     $_POST["gender"],
                      'dob'     =>     $_POST["dob"]  
                 );  
                 $array_data[] = $extra;  
                 $final_data = json_encode($array_data);  
                 if(file_put_contents('data.json', $final_data))  
                 {  
-                     $message = "<label class='text-success'>File Appended Success fully</p>";  
+                     $message = "<label class='text-success'>Registration Success!</p>";
                 }  
            }  
            else  
@@ -215,11 +192,11 @@ $errCount = 0;
                      ?>  
                      <br />  
                      <label>Name</label>  <span class="error">* <?php echo $nameErr;?></span>
-                     <input type="text" name="name" class="form-control" /> <br/>
+                     <input type="text" name="name" class="form-control" value="<?php echo $name;?>" /> <br/>
                      <label>E-mail</label> <span class="error">* <?php echo $emailErr;?></span>
-                     <input type="text" name = "email" class="form-control" /><br />
+                     <input type="text" name = "email" class="form-control" value="<?php echo $email;?>" /><br />
                      <label>User Name</label>  <span class="error">* <?php echo $userErr;?></span>
-                     <input type="text" name = "username" class="form-control" /><br />
+                     <input type="text" name = "username" class="form-control" value="<?php echo $username;?>" /><br />
                      <label>Password</label>  <span class="error">* <?php echo $passErr;?></span>
                      <input type="password" name = "password" class="form-control" /><br />
                      <label>Confirm Password</label>  <span class="error">* <?php echo $confrmPassErr;?></span>

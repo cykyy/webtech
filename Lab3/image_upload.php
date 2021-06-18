@@ -41,6 +41,7 @@ if(isset($_POST["submit"])) {
   $mime_type_arr = array('jpg', 'png', 'jpeg');
   if (in_array($imageFileType, $mime_type_arr)) {
   	// code...
+      echo $_FILES["image_to_up"]["size"];
   	if ($_FILES["image_to_up"]["size"] > 4000000) {
 	  $imgErr .= " Sorry, your file is larger than 4MB";
 	  $uploadOk = 0;
