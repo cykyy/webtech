@@ -19,6 +19,9 @@ I believe I have completed everything asked. You can check the codes to verify. 
   If any one tries to access any of the paage other than index.php and login.php without logged in then they will be redirect to login.php page.
 ```
 
+## Features
+Session and Cookies implemented.
+
 #### Demo User:Pass:
 * `sj` - `22222222aZ$`
 
