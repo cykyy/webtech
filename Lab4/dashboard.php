@@ -3,16 +3,8 @@
 <?php include 'templates/head.html';?>
 <body>
 
-<div class="sidenav">
-    <a href="#">Dashboard</a>
-    <a href="view_profile.php">View Profile</a>
-    <a href="#">Edit Profile</a>
-    <a href="#">Change Profile Picture</a>
-    <a href="#">Change Password</a>
-    <a href="logout.php">Logout</a>
-</div>
-
 <?php
+include 'templates/sidenav.php';
 session_start();
 include 'templates/nav.php';
 // define variables and set to empty values
