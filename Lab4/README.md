@@ -16,7 +16,7 @@ I believe I have completed everything asked. You can check the codes to verify. 
 - `profile_picture.php`: Allows to update/upload profile picture. Data validation present.
 - `change_password.php`: Allows to change current paassword. Strict data validation present.
 ```
-  If any one tries to access any of the paage other than index.php and login.php without logged in then they will be redirect to login.php page.
+  If any one tries to access any of the page other than index.php and login.php without logged in then they will be redirect to login.php page.
 ```
 
 ## Features
