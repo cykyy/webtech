@@ -48,7 +48,7 @@ $products = fetchAllProducts();
 			<tr>
 				<td><a href="showProduct.php?id=<?php echo $product['ID'] ?>"><?php echo $product['Name'] ?></a></td>
 				<td><?php echo $profit ?></td>
-				<td><a href="editProduct.php?id=<?php echo $product['ID'] ?>">Edit</a>&nbsp<a href="controller/deleteProduct.php?id=<?php echo $product['ID'] ?>" onclick="return confirm('Are you sure want to delete this ?')">Delete</a></td>
+				<td><a href="editProduct.php?id=<?php echo $product['ID'] ?>">Edit</a>&nbsp<a href="deleteProductView.php?id=<?php echo $product['ID'] ?>">Delete</a></td>
 			</tr>
 		<?php endforeach; ?>
 

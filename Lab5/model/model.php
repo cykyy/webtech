@@ -68,11 +68,11 @@ VALUES (:name, :b_price, :s_price, :display)";
 
 function updateProduct($id, $data){
     $conn = db_conn();
-    $selectQuery = "UPDATE products set Name = ?, Buying_Price = ?, Selling_Price = ? where ID = ?";
+    $selectQuery = "UPDATE products set Name = ?, Buying_Price = ?, Selling_Price = ?, display = ? where ID = ?";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
-        	$data['name'], $data['b_price'], $data['s_price'], $id
+        	$data['name'], $data['b_price'], $data['s_price'], $data['display'], $id
         ]);
     }catch(PDOException $e){
         echo $e->getMessage();

@@ -6,6 +6,12 @@ if (isset($_POST['updateProduct'])) {
 	$data['b_price'] = $_POST['b_price'];
 	$data['s_price'] = $_POST['s_price'];
 
+    if (isset($_POST['display'])) {
+        $data['display'] = 1;
+    } else {
+        $data['display'] = 0;
+    }
+
   if (updateProduct($_POST['id'], $data)) {
   	echo 'Successfully updated!!';
   	//redirect to showStudent
