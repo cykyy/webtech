@@ -2,6 +2,7 @@
 
 require_once 'db_connect.php';
 
+
 function showAllProducts(){
 	$conn = db_conn();
     $selectQuery = 'SELECT * FROM products';
@@ -29,17 +30,32 @@ function showProduct($id){
     return $row;
 }
 
+function searchProduct($product){
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM products WHERE Name LIKE '%$product%'";
+
+
+    try{
+        $stmt = $conn->query($selectQuery);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
 
 function addProduct($data){
 	$conn = db_conn();
-    $selectQuery = "INSERT into products (Name, Buying_Price, Selling_Price)
-VALUES (:name, :b_price, :s_price)";
+    $selectQuery = "INSERT into products (Name, Buying_Price, Selling_Price, display)
+VALUES (:name, :b_price, :s_price, :display)";
     try{
         $stmt = $conn->prepare($selectQuery);
         $stmt->execute([
         	':name' => $data['name'],
         	':b_price' => $data['b_price'],
-        	':s_price' => $data['s_price']
+        	':s_price' => $data['s_price'],
+        	':display' => $data['display']
         ]);
     }catch(PDOException $e){
         echo $e->getMessage();

@@ -7,7 +7,12 @@ if (isset($_POST['createProduct'])) {
 	$data['b_price'] = $_POST['b_price'];
 	$data['s_price'] = $_POST['s_price'];
 
-	echo 'printing?';
+    if (isset($_POST['display'])) {
+        $data['display'] = 1;
+    } else {
+        $data['display'] = 0;
+    }
+
 
   if (addProduct($data)) {
   	echo 'Product successfully added!! <a href="../showAllProducts.php">Go Back</a> ';
