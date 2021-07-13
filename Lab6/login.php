@@ -183,7 +183,7 @@ function check_input($data) {
         <label for="rmbm"> Remember Me</label><br><br>
 
         <input type="submit" name="submit" value="Submit">
-        <a href="/webtech/Lab4/forgot.php"> <span>Forgot Password?</span> </a>
+        <a href="/webtech/Lab6/forgot.php"> <span>Forgot Password?</span> </a>
 
     </form>
 
