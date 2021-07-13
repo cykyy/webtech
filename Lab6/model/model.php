@@ -57,3 +57,19 @@ function updateUser($username, $data){
     $conn = null;
     return true;
 }
+
+function updatePassword($username, $newPassword){
+    $conn = db_conn();
+    $selectQuery = "UPDATE user_info set Password = ? where Username = ?";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            $newPassword, $username
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $conn = null;
+    return true;
+}
