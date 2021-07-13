@@ -73,3 +73,19 @@ function updatePassword($username, $newPassword){
     $conn = null;
     return true;
 }
+
+function updateProfilePictureAbsPath($username, $absPath){
+    $conn = db_conn();
+    $selectQuery = "UPDATE user_info set ppic_abs_path = ? where Username = ?";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            $absPath, $username
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $conn = null;
+    return true;
+}

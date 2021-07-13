@@ -73,14 +73,13 @@ $imgErr = '';
 $errCount = 0;
 
 if (isset($_SESSION['uname'])) {
+    require_once 'controller/getUser.php';
+    require_once 'controller/updateProfilePic.php';
+    $arra = getUserAccount($_SESSION['uname']);
     echo "<h1>Change Profile Picture</h1>";
-    if (file_exists('data.json')) {
-        $strJsonFileContents = file_get_contents("data.json");
-        $arra = json_decode($strJsonFileContents);
-        foreach ($arra as $item) { //foreach element in $arr
-            if ($_SESSION['uname'] === $item->username) {
-                $abs_path = $item->ppic_abs_path;
-            }
+    if ($arra){
+        if ($_SESSION['uname'] === $arra['Username']){
+            $abs_path = $arra['ppic_abs_path'];
         }
     }
 
@@ -105,26 +104,8 @@ if (isset($_SESSION['uname'])) {
                         if (move_uploaded_file($_FILES["image_to_up"]["tmp_name"], $target_file)) {
                             // echo "<span style='color:green;'>"."The image ". htmlspecialchars( basename( $_FILES["image_to_up"]["name"])). " has been uploaded.</span>";
                             $abs_path = $target_file;
-
-                            if (file_exists('data.json')) {
-                                $strJsonFileContents = file_get_contents("data.json");
-                                $arra = json_decode($strJsonFileContents);
-                                // var_dump($arra);
-                                $user_found = false;
-                                $user_edited = false;
-                                foreach ($arra as $item) { //foreach element in $arr
-                                    if ($_SESSION['uname'] === $item->username) {
-                                        $user_found = true;
-                                        $item->ppic_abs_path = $abs_path;
-                                        $user_edited = true;
-                                    }
-                                }
-                                if ($user_edited) {
-                                    $final_data = json_encode($arra);
-                                    if (file_put_contents('data.json', $final_data)) {
-                                        echo "<span style='color: green'>Profile Picture Updated Successfully!</span>";
-                                    }
-                                }
+                            if(updateProfilePic($_SESSION['uname'], $abs_path)){
+                                echo "<span style='color: green'>Profile Picture Updated Successfully!</span>";
                             }
 
                         } else {
