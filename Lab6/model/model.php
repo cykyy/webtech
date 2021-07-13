@@ -24,3 +24,19 @@ VALUES (:name, :email, :username, :password, :gender, :dob, :ppic_abs_path)";
     $conn = null;
     return true;
 }
+
+
+function getUser($username){
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM user_info where Username = ?";
+
+    try {
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([$username]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
+}
