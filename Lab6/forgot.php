@@ -71,6 +71,8 @@ $errCount = 0;
 $email = "";
 $emailErr = "";
 
+require_once 'model/model.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $emailErr = "Email is required for this action!";
@@ -84,33 +86,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errCount = $errCount + 1;
         }
     }
-
+    $user_found = false;
     if ($errCount < 1){
-
-        $strJsonFileContents = file_get_contents("data.json");
-        // var_dump($strJsonFileContents);
-
-        $arra = json_decode($strJsonFileContents);
-        // var_dump($arra);
-        $user_found = false;
-        foreach($arra as $item) { //foreach element in $arr
-            //echo "<br>";
-            //echo "username: ".$item->username;
-            //echo "<br>";
-            //echo "password: ".$item->password;
-            //echo "<br>";
-
-            if ($email === $item->email){
-                $user_found = true;
-                // match. now check pw
-                if ($item->password){
-                    echo "<br><div style='color: green'>You are $item->name </br></div>";
-                    echo "<div style='color: green'> Your Password is $item->password </br></div>";
-                }else{
-                    $passErr .= "Password Not Found!!";
-                }
+        $arra = getUserByEmail($email);
+        if ($arra){
+            $user_found = true;
+            if ($arra['Password']){
+                echo "<br><div style='color: green'>You are " . $arra['Name'] . "</br></div>";
+                echo "<div style='color: green'> Your Password is " . $arra['Password'] . " </br></div>";
+            }else{
+                $passErr .= "Password Not Found!!";
             }
         }
+
         if (!$user_found){
             echo $userErr .= "No account found!";
         }

@@ -41,6 +41,21 @@ function getUser($username){
     return $row;
 }
 
+function getUserByEmail($email){
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM user_info where Email = ?";
+
+    try {
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([$email]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
+}
+
 
 function updateUser($username, $data){
     $conn = db_conn();
