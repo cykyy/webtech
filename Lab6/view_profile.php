@@ -79,20 +79,15 @@ if (isset($_SESSION['uname'])) {
     
     ';
 
-    $strJsonFileContents = file_get_contents("data.json");
-    // var_dump($strJsonFileContents);
-
-    $arra = json_decode($strJsonFileContents);
-    // var_dump($arra);
-    foreach($arra as $item) { //foreach element in $arr
-        if ($_SESSION['uname'] === $item->username){
-            // match. now check pw
-            echo '<img src="' . $item->ppic_abs_path . '"width="150" height="150"> <br><a href="profile_picture.php">Change</a> <br>';
-            echo '<br><div> Name: '. $item->name . '</div> <br>';
-            echo '<div> Email: '. $item->email . '</div> <br>';
-            echo '<div> Gender: '. $item->gender . '</div> <br>';
-            echo '<div> Date of Birth: '. $item->dob . '</div> <br>';
-        }
+    // db show goes here
+    require_once 'controller/getUser.php';
+    $arra = getUserAccount($_SESSION['uname']);
+    if ($_SESSION['uname'] === $arra['Username']){
+        echo '<img src="' . $arra['ppic_abs_path'] . '"width="150" height="150"> <br><a href="profile_picture.php">Change</a> <br>';
+        echo '<br><div> Name: '. $arra['Name'] . '</div> <br>';
+        echo '<div> Email: '. $arra['Email'] . '</div> <br>';
+        echo '<div> Gender: '. $arra['Gender'] . '</div> <br>';
+        echo '<div> Date of Birth: '. $arra['dob'] . '</div> <br>';
     }
     echo '<b><a href="edit_profile.php"> Edit Profile ' . '</a></b> <br><br>';
     echo '</fieldset>';
