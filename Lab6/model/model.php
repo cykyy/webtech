@@ -40,3 +40,20 @@ function getUser($username){
 
     return $row;
 }
+
+
+function updateUser($username, $data){
+    $conn = db_conn();
+    $selectQuery = "UPDATE user_info set Name = ?, Email = ?, Gender = ?, dob = ? where Username = ?";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            $data['name'], $data['email'], $data['gender'], $data['dob'], $username
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $conn = null;
+    return true;
+}
