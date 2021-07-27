@@ -68,38 +68,32 @@ if (isset($_SESSION['uname'])) {
         if ($errCount < 1){
             $time = time();
             if (isset($_POST['rmbm'])) {
-                setcookie('username', $username, $time + 100);
-                setcookie('password', $password, $time + 100);
+                setcookie('username', $username, $time + 10);
+                setcookie('password', $password, $time + 10);
             }
+            require_once 'controller/login.php';
 
-            $strJsonFileContents = file_get_contents("data.json");
-            // var_dump($strJsonFileContents);
-
-            $arra = json_decode($strJsonFileContents);
-            // var_dump($arra);
-            $user_found = false;
-            foreach($arra as $item) { //foreach element in $arr
-                if ($username === $item->username){
-                    $user_found = true;
-                    // match. now check pw
-                    if ($password === $item->password){
-                        echo "Thanks for logging $item->name ... success!!";
-                        $_SESSION['uname'] = $username;
-                        $_SESSION['ugroup'] = $item->acc_group;
-                        header('Location: dashboard.php');
-                        //exit;
-                    }else{
-                        $passErr .= "Password Wrong!";
-                    }
+            // db login goes here
+            $dt = loginUser($username);
+            if ($dt) {
+                $user_found = true;
+                if ($password === $dt['Password']){
+                    $_SESSION['uname'] = $username;
+                    $_SESSION['ugroup'] = $dt['acc_group'];
+                    echo "Thanks for logging in.";
+                    header('Location: dashboard.php');
+                } else{
+                    $passErr .= "Password Wrong!";
                 }
+            } else{
+                $user_found = false;
             }
+
             if (!$user_found){
                 echo $userErr .= "No account found!";
             }
 
-
             //exit;
-
         }
 
     }

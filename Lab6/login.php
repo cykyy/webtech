@@ -153,9 +153,7 @@ if (isset($_SESSION['uname'])) {
             echo $userErr .= "No account found!";
         }
 
-
         //exit;
-
     }
 
 }

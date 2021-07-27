@@ -134,36 +134,31 @@ if(isset($_POST["submit"]))  {
     if($errCount > 0) {
         echo "<span class='error'>One or more error occurred!</span>";
     } else {
-        if(file_exists('data.json'))
-        {
-            $current_data = file_get_contents('data.json');
-            $array_data = json_decode($current_data, true);
-            $extra = array(
-                'name'               =>     $_POST['name'],
-                'email'          =>     $_POST["email"],
-                'username'     =>     $_POST["username"],
-                'password'     =>     $_POST["password"],
-                'gender'     =>     $_POST["gender"],
-                'dob'     =>     $_POST["dob"],
-                'ppic_abs_path'     =>     '',
-                'status'     =>     'Active',
-                'acc_group'     =>     'Subscriber'
-            );
-            $array_data[] = $extra;
-            $final_data = json_encode($array_data);
-            if(file_put_contents('data.json', $final_data))
-            {
-                $message = "<label class='text-success'>Registration Success!</p>";
-                $name='';
-                $email='';
-                $username = $gender = $dob = '';
 
-            }
+        require_once 'model/model.php';
+
+        $data['name'] = $_POST['name'];
+        echo $_POST['email'];
+        $data['email'] = $email;
+        $data['username'] = $_POST['username'];
+        $data['password'] = $_POST['password'];
+        $data['gender'] = $_POST['gender'];
+        $data['dob'] = $_POST['dob'];
+        $data['ppic_abs_path'] = '';
+
+        if (isset($_POST['display'])) {
+            $data['display'] = 1;
+        } else {
+            $data['display'] = 0;
         }
-        else
-        {
-            $error = 'JSON File not exits';
+
+        if (registerUser($data)) {
+            echo 'New User successfully registered!!';
+            $name='';
+            $email='';
+            $username = $gender = $dob = '';
         }
+
     }
 }
 function check_input($data) {
@@ -229,6 +224,7 @@ function check_input($data) {
         }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         function validateForm() {
             let usrnm = document.forms["reg_form"]["username"].value;
@@ -283,11 +279,32 @@ function check_input($data) {
         function checkTextInput(){
             let usrnm = document.forms["reg_form"]["username"].value;
             let passwrd = document.forms["reg_form"]["password"].value;
-            if (usrnm !== "" && passwrd !== "") {
-                document.getElementById("sub_btn").hidden = false;
-                // document.getElementById("sub_btn").style.backgroundColor="green";
+            let name = document.forms["reg_form"]["name"].value;
+            let email = document.forms["reg_form"]["email"].value;
+            let cnfrmPass = document.forms["reg_form"]["cnfrmPass"].value;
+            let gender = document.forms["reg_form"]["gender"].value;
+            let dob = document.forms["reg_form"]["dob"].value;
+            //alert('test')
+            document.getElementById("sub_btn").disabled = !(usrnm !== "" && passwrd !== "" && name !== "" && email !== "" && cnfrmPass !== "" && gender !== "" && dob !== "");
+        }
+
+        function check_username(){
+            //alert('testtttt')
+            // Get value from input on the page
+            var username = jQuery("#username").val();
+            if (username) {
+                // Send the input data to the server using get
+                jQuery.get("check_username_db.php", {"username": username}, function (data) {
+                    // Display the returned data
+                    // alert(username)
+                    // alert(data)
+                    document.getElementById("result").innerHTML = data;
+                });
+            } else {
+                document.getElementById("result").innerHTML = '';
             }
 
+            checkTextInput()
         }
 
     </script>
@@ -307,27 +324,36 @@ function check_input($data) {
         ?>
         <br />
         <label>Name</label>  <span class="error">* <?php echo $nameErr;?></span>
-        <input type="text" name="name" class="form-control" value="<?php echo $name;?>" /> <br/><br/>
+        <input type="text" onkeyup="checkTextInput()" name="name" class="form-control" value="<?php echo $name;?>" /> <br/><br/>
         <label>E-mail</label> <span class="error">* <?php echo $emailErr;?></span>
-        <input type="text" name = "email" class="form-control" value="<?php echo $email;?>" /><br /><br/>
+
+        <input type="text" name="email" onkeyup="checkTextInput()" class="form-control" value="<?php echo $email;?>" /><br /><br/>
+
         <label>User Name</label>  <span class="error">* <?php echo $userErr;?></span>
-        <input type="text" name = "username" class="form-control" value="<?php echo $username;?>" /><br /><br/>
+        <input type="text" id="username" name="username" onkeyup="check_username()" class="form-control" value="<?php echo $username;?>" /> <br/>
+        <div id="result"></div><br/>
+
         <label>Password</label>  <span class="error">* <?php echo $passErr;?></span>
-        <input type="password" name = "password" class="form-control" /><br /><br/>
+
+        <input type="password" name="password" onkeyup="checkTextInput()" class="form-control" /><br /><br/>
         <label>Confirm Password</label>  <span class="error">* <?php echo $confrmPassErr;?></span>
-        <input type="password" name = "cnfrmPass" class="form-control" /><br /><br/>
+
+        <input type="password" name = "cnfrmPass" onkeyup="checkTextInput()" class="form-control" /><br /><br/>
 
         <fieldset>
             <legend>Gender</legend>  <span class="error">* <?php echo $genderErr;?></span>
-            <input type="radio" id="male" name="gender" value="male" <?php if ($gender === 'male'){ echo 'checked';}?> >
+            <input type="radio" id="male" name="gender" oninput="checkTextInput()" value="male" <?php if ($gender === 'male'){ echo 'checked';}?> >
             <label for="male">Male</label>
-            <input type="radio" id="female" name="gender" value="female" <?php if ($gender === 'female'){ echo 'checked';}?> >
+
+            <input type="radio" id="female" name="gender" oninput="checkTextInput()" value="female" <?php if ($gender === 'female'){ echo 'checked';}?> >
             <label for="female">Female</label>
-            <input type="radio" id="other" name="gender" value="other" <?php if ($gender === 'other'){ echo 'checked';}?> >
+
+            <input type="radio" id="other" name="gender" oninput="checkTextInput()" value="other" <?php if ($gender === 'other'){ echo 'checked';}?> >
             <label for="other">Other</label><br>
 
             <legend>Date of Birth:</legend>  <span class="error">* <?php echo $dobErr;?></span>
-            <input type="date" name="dob" value="<?php echo $dob;?>"> <br><br>
+            <input type="date" name="dob" oninput="checkTextInput()" value="<?php echo $dob;?>"> <br><br>
+
         </fieldset> <br>
 
         <span id="res_text"></span> <br>
