@@ -41,6 +41,17 @@ include 'templates/nav2.php';?>
             let newPass = document.forms["cng_pws_form"]["new_password"].value;
             let rePass = document.forms["cng_pws_form"]["retype_password"].value;
             document.getElementById("sub_btn").disabled = !(currPass !== "" && newPass !== "" && rePass !== "");
+            if (rePass !== "") {
+                if (newPass !== rePass) {
+                    document.getElementById("result").innerHTML = "New password and Retype password does not matches!";
+                    document.getElementById("result").style.color = 'red';
+                    document.getElementById("sub_btn").disabled = true;
+                } else {
+                    document.getElementById("result").innerHTML = '';
+                    document.getElementById("sub_btn").disabled = false;
+                }
+            }
+
         }
     </script>
 </head>
@@ -60,6 +71,7 @@ include 'templates/nav2.php';?>
         <br>
         Retype New Password: <input type="password" onkeyup="checkTextInput()" name="retype_password">
         <span class="error">* <?php echo $retypePassErr;?></span>
+        <div id="result"></div>
         <br><br>
 
         <input type="submit" id="sub_btn" name="submit" disabled value="Submit">

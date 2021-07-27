@@ -192,6 +192,7 @@ function check_input($data){
             // alert("Minimum 2 words required");
             document.getElementById("sub_btn").disabled = true;
             document.getElementById("result").innerHTML = "Minimum 2 words required";
+            document.getElementById("result").style.color = 'red';
         } else {
             document.getElementById("result").innerHTML = '';
         }

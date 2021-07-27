@@ -109,7 +109,10 @@ function check_input($data) {
             // alert(typeof (res));
             if (res) {
                 document.getElementById("sub_btn").disabled = false;
+                document.getElementById("result").innerHTML = "";
             } else {
+                document.getElementById("result").innerHTML = "Not a valid URL";
+                document.getElementById("result").style.color = "red";
                 document.getElementById("sub_btn").disabled = true;
             }
         }
@@ -121,6 +124,7 @@ function check_input($data) {
     <form method="post" name="add_tracker" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
         <span class="error">* <?php echo $pUrlErr;?></span>
+        <div id="result"></div>
         <br><br>
 
         <input type="submit" id="sub_btn" disabled name="submit" value="Submit">
