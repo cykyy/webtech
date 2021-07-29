@@ -11,8 +11,8 @@ I believe I have implemented everything asked. You can check the codes and scree
 - `registration.php`: Page for new user registration. Strict data validation present.
 - `index.php`: Front page of the app. If logged in, redirects to dashboard.php
 - `dashboard.php`: Front page for the logged in user. if logged out, redirects to login.php
-- `view_profile.php`: View user data from data.json
-- `edit_profile.php`: To edit a profile data. Updated data also gets saved into data.json. Data validation also present on the backend.
+- `view_profile.php`: View user data from database.
+- `edit_profile.php`: To edit a profile data. Updated data also gets saved into database. Data validation also present on the backend.
 - `profile_picture.php`: Allows to update/upload profile picture. Data validation present.
 - `change_password.php`: Allows to change current password. Strict data validation present.
 ```
