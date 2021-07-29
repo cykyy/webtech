@@ -1,6 +1,6 @@
 # LAB 6 Task
 
-I believe I have completed everything asked. You can check the codes to verify. I am listing some implemented functions/features and information about the task.
+I believe I have implemented everything asked. You can check the codes and screenshots to verify. I am listing some implemented functions/features and information about the task.
 
 - `screenshots/`: A folder. Contains all screenshots.
 - `templates/`: A folder. Contains all the include/require static files.
@@ -20,7 +20,8 @@ I believe I have completed everything asked. You can check the codes to verify. 
 ```
 
 ## Features
-Session and Cookies implemented.
+- Mysql Database
+- Session and Cookies implemented.
 
 #### Demo User:Pass:
 * `sj` - `22222222aZ$`
