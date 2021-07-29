@@ -6,4 +6,5 @@
    background-color: #215582; !important;
    color: white;
    text-align: center;
+   z-index: 2  /* Z-indexing for overlapping issue e.g. with login form */
 }
