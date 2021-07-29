@@ -23,7 +23,4 @@ I believe I have implemented everything asked. You can check the codes and scree
 - Mysql Database
 - Session and Cookies implemented.
 
-#### Demo User:Pass:
-* `sj` - `22222222aZ$`
-
 **Thanks**
