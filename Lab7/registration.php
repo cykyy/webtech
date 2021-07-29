@@ -243,7 +243,7 @@ function check_input($data) {
             var username = jQuery("#username").val();
             if (username) {
                 // Send the input data to the server using get
-                jQuery.get("check_username_db.php", {"username": username}, function (data) {
+                jQuery.get("controller/check_username_db.php", {"username": username}, function (data) {
                     // Display the returned data
                     // alert(username)
                     // alert(data)
