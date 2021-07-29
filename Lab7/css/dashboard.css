@@ -1,0 +1,16 @@
+/* dashboard custom css */
+
+/* text color of demo text */
+.color-white {
+    color: white;
+}
+
+/* centers text */
+.text-center {
+    text-align: center;
+}
+
+/* puts some space left and right */
+.margin-solve {
+    margin: 20% 10px;
+}

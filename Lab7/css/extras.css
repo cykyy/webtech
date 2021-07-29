@@ -1,3 +1,5 @@
+/* This css file is for additional stuff. centers element, form required and so on. */
+
 /* Centers an element */
 .make-it-center{
     margin: auto;
@@ -24,4 +26,8 @@ body{
 /* Anything on that class is red */
 .error{
     color: red;
+}
+
+.text-center {
+    text-align: center;
 }

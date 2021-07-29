@@ -1,9 +1,12 @@
+/* This css file is for login */
+
 /* importing a google font */
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 /* prettifying the login form */
 .login-page {
-  width: 360px; /* sets the width */
+  z-index: 1;
+  width: 350px; /* sets the width */
   padding: 2% 0 0; /* gives a few space */
   margin: auto; /* makes the form center */
 }
@@ -30,7 +33,7 @@ a{
   background: #f2f2f2; /* input field bg */
   width: 100%;
   border: 0;
-  margin: 0 0 15px; /* some space */
+  margin: 0 0 5px; /* some space */
   padding: 15px; /* input field space space */
   box-sizing: border-box;  /* include the padding and border in an element's total width and height */
   font-size: 14px;
@@ -59,4 +62,11 @@ body {
   background: #8DC26FFF; /* fallback for old browsers */
   background: linear-gradient(to left, #090f1f, #1c1f2d);
   font-family: "Roboto", sans-serif;
+}
+
+.container {
+  z-index: 1;
+  width: 350px; /* sets the width */
+  padding: 2% 0 0; /* gives a few space */
+  margin: auto; /* makes the form center */
 }

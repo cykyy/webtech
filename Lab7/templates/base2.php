@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Cartista</title>
-    <link rel="stylesheet" type="text/css" href="staticfiles/footer_base.css">
-    <link rel="stylesheet" type="text/css" href="staticfiles/admin_login.css">
+    <link rel="stylesheet" type="text/css" href="css/footer_base.css">
+    <link rel="stylesheet" type="text/css" href="css/admin_login.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>

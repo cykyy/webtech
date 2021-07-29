@@ -1,5 +1,4 @@
 <?php
-require_once 'controller/updatePassword.php';
 include 'templates/nav2.php';?>
 <?php include 'templates/base2.php';
 
@@ -9,32 +8,6 @@ include 'templates/nav2.php';?>
 <html>
 <head>
     <title>Change Password</title>
-    <style>
-
-        .make-it-center{
-            margin: auto;
-            width: 50%;
-        }
-
-        body{
-            color: white;
-
-        }
-
-        .lefterr{
-            margin-left: -10%;
-        }
-
-        .required:after {
-            content:"*";
-            color: red;
-        }
-        .error{
-            color: red;
-        }
-
-
-    </style>
     <script>
         function checkTextInput(){
             let currPass = document.forms["cng_pws_form"]["current_pass"].value;
@@ -58,26 +31,24 @@ include 'templates/nav2.php';?>
 <body>
 
 <br>
-<div class="donor-info make-it-center">
-<div class="container" style="width:500px;">
-    <h2>Change Password</h2>
+<div class="container">
+    <h2 class="text-center">Change Password</h2>
     <br>
-    <form method="post" name="cng_pws_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="post" class="form" name="cng_pws_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         Current Password: <input type="password" onkeyup="checkTextInput()" name="current_pass">
-        <span class="error">* <?php echo $curPassErr;?></span>
+        <span class="error">* </span>
         <br><br>
         New Password: <input type="password" onkeyup="checkTextInput()" name="new_password">
-        <span class="error">* <?php echo $newPassErr;?></span>
+        <span class="error">* </span>
         <br>
         Retype New Password: <input type="password" onkeyup="checkTextInput()" name="retype_password">
-        <span class="error">* <?php echo $retypePassErr;?></span>
+        <span class="error">* </span>
         <div id="result"></div>
         <br><br>
 
-        <input type="submit" id="sub_btn" name="submit" disabled value="Submit">
+        <button type="submit" id="sub_btn" name="submit" disabled value="Submit"> Submit </button>
 
     </form>
-</div>
 </div>
 
 <br>

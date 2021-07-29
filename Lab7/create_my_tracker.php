@@ -7,31 +7,6 @@ include 'templates/base2.php';
 <html>
 <head>
     <title>Forgot Password</title>
-    <style>
-
-        .make-it-center{
-            margin: auto;
-            width: 50%;
-        }
-
-        body{
-            color: white;
-
-        }
-
-        .lefterr{
-            margin-left: -10%;
-        }
-
-        .required:after {
-            content:"*";
-            color: red;
-        }
-        .error{
-            color: red;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -118,22 +93,17 @@ function check_input($data) {
         }
     }
 </script>
+    <div class="container">
+        <h2 class="text-center">Track New Product Stock</h2>
+        <form class="form" method="post" name="add_tracker" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
+            <span class="error">* <?php echo $pUrlErr;?></span>
+            <div id="result"></div>
+            <br><br>
 
-<div class="donor-info make-it-center">
-    <h2>Track New Product Stock</h2>
-    <form method="post" name="add_tracker" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
-        <span class="error">* <?php echo $pUrlErr;?></span>
-        <div id="result"></div>
-        <br><br>
+            <button type="submit" id="sub_btn" disabled name="submit" value="Submit">Submit</button>
 
-        <input type="submit" id="sub_btn" disabled name="submit" value="Submit">
-
-    </form>
-
-</div>
-
-
+        </form>
+    </div>
 </body>
-
 </html>

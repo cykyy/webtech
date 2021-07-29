@@ -1,3 +1,6 @@
+/* This css file is for sticky footer */
+
+/* Makes the footer sticky and no-overlappy */
 .footer_base{
    position: fixed;
    left: 0;

@@ -172,7 +172,7 @@ function check_input($data) {
 <html>
 <head>
     <title>Registration</title>
-    <link rel="stylesheet" href="staticfiles/extras.css">
+    <link rel="stylesheet" type="text/css" href="css/extras.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         function validateForm() {
@@ -257,14 +257,14 @@ function check_input($data) {
         }
 
     </script>
+    <link rel="stylesheet" type="text/css" href="css/registration.css">
 </head>
 
 <body>
-<div class="donor-info make-it-center">
 <br />
-<div class="container" style="width:500px;">
-    <h3>User Registration</h3>
-    <form name="reg_form" onsubmit="return validateForm()" method="post">
+<div class="container">
+    <h3 class="text-center">User Registration</h3>
+    <form name="reg_form" onsubmit="return validateForm()" method="post" class="form">
         <?php
         if(isset($error))
         {
@@ -307,7 +307,7 @@ function check_input($data) {
 
         <span id="res_text"></span> <br>
 
-        <input disabled type="submit" id="sub_btn" name="submit" value="Register" class="btn btn-info" /><br />
+        <button disabled type="submit" id="sub_btn" name="submit" value="Register">Register</button><br />
         <?php
         if(isset($message))
         {
@@ -317,6 +317,5 @@ function check_input($data) {
     </form>
 </div>
 <br />
-</div>
 </body>
 </html>

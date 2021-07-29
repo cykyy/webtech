@@ -1,0 +1,88 @@
+/* This css file is for the sticky navbar and navbar-dropdown menu */
+
+/* fixes nav margin space */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* margin-left solution */
+.topnav {
+    overflow: hidden;
+    background-color: #253a55;
+}
+
+/* nav menu link appearance */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;  /* for the space between link and around link */
+    text-decoration: none;  /* nav menu link removes underline of links */
+    font-size: 17px;
+}
+
+/* hover effects */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* click active effects */
+.topnav a.active {
+    background-color: #324e6c;
+    color: white;
+}
+
+/* dropdown position fix */
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+/* dropdown button */
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* all links color */
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: #00950c;
+}
+
+/* wraps all the links inside the dropdown button */
+.dropdown-content {
+    display: none; /* wraps up/hides */
+    position: absolute; /* fixes the dropdown bg bring-along issue */
+    background-color: #f9f9f9; /* dropdown links bg color */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 68, 255, 0.2);  /* shadow around the dropdown */
+    z-index: 1; /* indexing for overlapping issue */
+}
+
+/* all links inside dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; /* stacks all the links on their own line instead of in single line */
+    text-align: left; /* alignment */
+}
+
+/* hover color */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* opens the dropdown list after hovering by setting the display block */
+.dropdown:hover .dropdown-content {
+    display: block;
+}

@@ -1,5 +1,6 @@
 <?php
 session_start();
+// all css files are mentioned there on the base2 and nav2 file.
 include 'templates/nav2.php';?>
 <?php include 'templates/base2.php';?>
 <?php
@@ -142,10 +143,9 @@ function check_input($data) {
 
 </script>
 
-<div class="login-page">
-  <div class="form">
-    <form method="POST" class="login-form" name="login-form" onsubmit="return validateForm()">
-        <div style="text-align: left"> </div>
+<div class="container">
+    <form method="POST" class="form" name="login-form" onsubmit="return validateForm()">
+
         Username:
         <span class="error">* <?php echo $userErr;?></span>
         <input type="text" onkeyup="checkTextInput()" name="username" value="<?php if(isset($_COOKIE["username"])) { echo $_COOKIE["username"]; } ?>">
@@ -167,7 +167,4 @@ function check_input($data) {
 
     </form>
   </div>
-
-</div>
-
 
