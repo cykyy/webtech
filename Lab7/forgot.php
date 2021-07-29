@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
 
-    <button type="submit" name="submit" value="Submit">Button </button>
+    <button type="submit" name="submit" value="Submit">Submit </button>
 
 </form>
 </div>

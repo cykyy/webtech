@@ -3,7 +3,7 @@ session_start();
 ?>
 <link rel="stylesheet" type="text/css" href="css/nav.css">
 <div class="topnav">
-    <a class="active" href="./index.php">Home</a>
+    <a class="active" href="./dashboard.php">Home</a>
 
     <?php
     if (!isset($_SESSION['uname'])) {
@@ -19,11 +19,6 @@ session_start();
                     </button>
                     <div class="dropdown-content">
                       <a href="./dashboard.php">Dashboard</a>
-                      <a href="./trackers.php">Trackers</a>
-                      <a href="./accounts.php">Accounts</a>
-                      <a href="./view_profile.php">View Profile</a>
-                      <a href="./edit_profile.php">Edit Profile</a>
-                      <a href="./profile_picture.php">Change Profile Picture</a>
                       <a href="./change_password.php">Change Password</a>
                       <a href="./logout.php">Logout</a>
                     </div>
