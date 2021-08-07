@@ -1,0 +1,1 @@
+* Search examples: 1. registrations.php: used username checking using ajax get request (vanilla js)

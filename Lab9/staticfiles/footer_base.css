@@ -1,0 +1,9 @@
+.footer_base{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #215582; !important;
+   color: white;
+   text-align: center;
+}

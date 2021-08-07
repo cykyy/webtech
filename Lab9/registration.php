@@ -173,16 +173,54 @@ function check_input($data) {
 <head>
     <title>Registration</title>
     <style>
+
+        .make-it-center{
+            margin: auto;
+            width: 50%;
+        }
+
         body{
             color: white;
 
         }
+
+        .lefterr{
+            margin-left: -10%;
+        }
+
         .required:after {
             content:"*";
             color: red;
         }
         .error{
             color: red;
+        }
+
+        /* The sidebar menu */
+        .sidenav {
+            height: 100%; /* Full-height: remove this if you want "auto" height */
+            width: 220px; /* Set the width of the sidebar */
+            position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+            z-index: 1; /* Stay on top */
+            top: 0; /* Stay at the top */
+            left: 0;
+            background-color: #111; /* Black */
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 20px;
+        }
+
+        /* The navigation menu links */
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+        }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: #f1f1f1;
         }
 
     </style>
@@ -250,16 +288,14 @@ function check_input($data) {
             document.getElementById("sub_btn").disabled = !(usrnm !== "" && passwrd !== "" && name !== "" && email !== "" && cnfrmPass !== "" && gender !== "" && dob !== "");
         }
 
-        function check_username(){
-            //alert('testtttt')
+        // jquery version.
+        function check_username_jq(){
             // Get value from input on the page
             var username = jQuery("#username").val();
             if (username) {
                 // Send the input data to the server using get
-                jQuery.get("check_username_db.php", {"username": username}, function (data) {
+                jQuery.get("controller/check_username_db.php", {"username": username}, function (data) {
                     // Display the returned data
-                    // alert(username)
-                    // alert(data)
                     document.getElementById("result").innerHTML = data;
                 });
             } else {
@@ -267,6 +303,24 @@ function check_input($data) {
             }
 
             checkTextInput()
+        }
+
+        // vanilla js version
+        function check_username_vanilla() {
+            var username = document.getElementById("username").value
+            // alert('all good '+username)
+            if (!username) {
+                document.getElementById("result").innerHTML = '';
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("result").innerHTML = this.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "controller/check_username_db.php?username="+username, true);
+                xmlhttp.send();
+            }
         }
 
     </script>
@@ -292,7 +346,7 @@ function check_input($data) {
         <input type="text" name="email" onkeyup="checkTextInput()" class="form-control" value="<?php echo $email;?>" /><br /><br/>
 
         <label>User Name</label>  <span class="error">* <?php echo $userErr;?></span>
-        <input type="text" id="username" name="username" onkeyup="check_username()" class="form-control" value="<?php echo $username;?>" /> <br/>
+        <input type="text" id="username" name="username" onkeyup="check_username_vanilla()" class="form-control" value="<?php echo $username;?>" /> <br/>
         <div id="result"></div><br/>
 
         <label>Password</label>  <span class="error">* <?php echo $passErr;?></span>
