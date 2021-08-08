@@ -16,13 +16,6 @@ include 'templates/base2.php';
 </head>
 <body>
 
-<?php
-// define variables and set to empty values
-$errCount = 0;
-$purl = "";
-$pUrlErr = "";
-?>
-
 <script>
     function isValidUrl(string) {
         if (string.includes('http:') || string.includes('https:')){
@@ -63,7 +56,6 @@ $pUrlErr = "";
 
 <script>
     function addTrackerDb() {
-        //alert('testing');
         var uri = document.getElementById("uri").value
         if (uri !== "") {
             var xhttp = new XMLHttpRequest();

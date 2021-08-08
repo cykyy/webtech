@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/nav.css">
 <link rel="stylesheet" type="text/css" href="css/extras.css">
+<script type="text/javascript" src="js/searcher.js"></script>
 <div class="topnav">
   <a class="active" href="./dashboard.php">Home</a>
 
@@ -43,15 +44,20 @@
         }
     } else {
         echo '
-       <a href="./login.php">Login</a>
+       <a href="./registration.php">Registration</a>
+       <a href="./create_my_tracker.php">Tracker</a>
        <a href="./contact.php">Contact</a>
        <a href="./privacy-policy.php">Privacy Policy</a>
        <a href="./about.php">About</a>
+       <label style="float: right; margin: 10px 10px">Search</label>
+       <input style="float: right; margin: 10px 5px 10px 10px" id="searcher" onkeyup="search()" type="text">
+       
       ';
     }
     ?>
 
 </div>
+<div id="search_res" style="float: right; margin-right: 5%;"></div>
 
 
 

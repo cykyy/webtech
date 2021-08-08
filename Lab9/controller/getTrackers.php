@@ -11,7 +11,6 @@ if($res){
               </tr>
     ';
     //echo var_dump($res);
-    $stuff = array(1,2,3);
     foreach ($res as $values) {
         //echo $values['URI'], "<br>";
         echo '
