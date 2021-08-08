@@ -1,0 +1,42 @@
+.container {
+    z-index: 1;
+    width: 350px; /* sets the width */
+    padding: 2% 0 0; /* gives a few space */
+    margin: auto; /* makes the form center */
+}
+
+.login-page {
+    width: 350px; /* sets the width */
+    padding: 2% 0 0; /* gives a few space */
+    margin: auto; /* makes the form center */
+}
+
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2; /* input field bg */
+    width: 100%;
+    border: 0;
+    margin: 0 0 5px; /* some space */
+    padding: 15px; /* input field space space */
+    box-sizing: border-box;  /* include the padding and border in an element's total width and height */
+    font-size: 14px;
+}
+
+/* login button */
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;  /* uppercase the login button */
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;  /* sets the weight */
+    border: 0;  /* sets no border */
+    padding: 15px; /* inside space*/
+    color: #FFFFFF; /* color text */
+    font-size: 14px;
+    cursor: pointer; /* hand cursor */
+}
+
+.text-center {
+    text-align: center;
+}

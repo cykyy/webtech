@@ -25,6 +25,22 @@ VALUES (:name, :email, :username, :password, :gender, :dob, :ppic_abs_path)";
     return true;
 }
 
+function createTracker($uri){
+    $conn = db_conn();
+    $selectQuery = "INSERT into trackers (uri)
+VALUES (:uri)";
+    try{
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([
+            ':uri' => $uri
+        ]);
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
+
+    $conn = null;
+    return true;
+}
 
 function getUser($username){
     $conn = db_conn();
@@ -36,6 +52,20 @@ function getUser($username){
         echo $e->getMessage();
     }
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row;
+}
+
+function getTrackersFromDB(){
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM trackers";
+    try {
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     return $row;
 }
 

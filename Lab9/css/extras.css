@@ -1,0 +1,33 @@
+/* This css file is for additional stuff. centers element, form required and so on. */
+
+/* Centers an element */
+.make-it-center{
+    margin: auto;
+    width: 50%;
+}
+
+/* set color white to all body text */
+body{
+    color: white;
+}
+
+/* left by negative 10%
+.lefterr{
+    margin-left: -10%;
+}
+ */
+
+/* Puts asterisks after a required field and set the color red */
+.required:after {
+    content:"*";
+    color: red;
+}
+
+/* Anything on that class is red */
+.error{
+    color: red;
+}
+
+.text-center {
+    text-align: center;
+}

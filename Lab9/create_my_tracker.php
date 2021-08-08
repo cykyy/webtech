@@ -7,6 +7,12 @@ include 'templates/base2.php';
 <html>
 <head>
     <title>Create a tracker</title>
+    <style>
+        table, th, td {
+            border: 1px solid #00cd04;
+            border-collapse: collapse;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,51 +21,6 @@ include 'templates/base2.php';
 $errCount = 0;
 $purl = "";
 $pUrlErr = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["purl"])) {
-        $pUrlErr = "URL is required!";
-        $errCount = $errCount + 1;
-    } else {
-        $purl = $_POST["purl"];
-    }
-
-    if ($errCount < 1){
-
-        $strJsonFileContents = file_get_contents("data.json");
-        $arra = json_decode($strJsonFileContents);
-        $user_found = false;
-        $user_edited = false;
-        foreach($arra as $item) { //foreach element in $arr
-            if ($_SESSION['uname'] === $item->username){
-                $user_found = true;
-                if (isset($item->trackers)){
-                    array_push($item->trackers, $purl);
-                    $user_edited = true;
-                } else{
-                    $item->trackers = array($purl);
-                    $user_edited = true;
-                }
-            }
-        }
-        if ($user_edited){
-            $final_data = json_encode($arra);
-            if(file_put_contents('data.json', $final_data)){
-                echo "<br><div style='color: green; text-align: center'> Successfully submitted! </br></div>";
-                echo "<div style='color: green; text-align: center'> Whenever there's a change of stock status (eg In-Stock/Stock-Out) You will get notified.</br></div>";
-
-            }
-        }
-    }
-}
-
-function check_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-
 ?>
 
 <script>
@@ -72,10 +33,11 @@ function check_input($data) {
     }
 
     function checkTextInput(){
-        let purl = document.forms["add_tracker"]["purl"].value;
+        //alert('test');
+        let purl = document.getElementById("uri").value;
         if (purl !== "") {
             let res = isValidUrl(purl)
-            // alert(typeof (res));
+            //alert(typeof (res));
             if (res) {
                 document.getElementById("sub_btn").disabled = false;
                 document.getElementById("result").innerHTML = "";
@@ -86,21 +48,54 @@ function check_input($data) {
             }
         }
     }
+
+
+</script>
+<div class="text-center">
+    <h1>Add New Tracker</h1>
+    <input type="text" id="uri" onkeyup="checkTextInput()">
+    <button type="button" disabled id="sub_btn" onclick="addTrackerDb()">Submit</button>
+    <button type="button" id="show_all_records" onclick="showTrackers()">Show Trackers</button>
+
+    <p id="result"></p>
+    <div id="result2"></div>
+</div>
+
+<script>
+    function addTrackerDb() {
+        //alert('testing');
+        var uri = document.getElementById("uri").value
+        if (uri !== "") {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result").innerHTML = this.responseText;
+                    document.getElementById("uri").value = "";
+                    //document.getElementById("result2").value = "";
+                    document.getElementById("sub_btn").disabled = true;
+                    showTrackers();
+                }
+            };
+            xhttp.open("POST", "controller/add_new_tracker.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("uri=" + uri);
+        }
+    }
+</script>
+<script>
+    function showTrackers(){
+        //alert('all good');
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("result2").innerHTML = this.responseText;
+            }
+        }
+        xmlhttp.open("GET", "controller/getTrackers.php", true);
+        xmlhttp.send();
+    }
 </script>
 
-<div class="donor-info make-it-center">
-    <h2>Track New Product Stock</h2>
-    <form method="post" name="add_tracker" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
-        <span class="error">* <?php echo $pUrlErr;?></span>
-        <div id="result"></div>
-        <br><br>
-
-        <input type="submit" id="sub_btn" disabled name="submit" value="Submit">
-
-    </form>
-
-</div>
 
 </body>
 
