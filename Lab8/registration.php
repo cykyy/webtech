@@ -250,6 +250,7 @@ function check_input($data) {
             document.getElementById("sub_btn").disabled = !(usrnm !== "" && passwrd !== "" && name !== "" && email !== "" && cnfrmPass !== "" && gender !== "" && dob !== "");
         }
 
+        // jQuery version
         function check_username(){
             //alert('testtttt')
             // Get value from input on the page
@@ -258,7 +259,6 @@ function check_input($data) {
                 // Send the input data to the server using get
                 jQuery.get("check_username_db.php", {"username": username}, function (data) {
                     // Display the returned data
-                    // alert(username)
                     // alert(data)
                     document.getElementById("result").innerHTML = data;
                 });
@@ -266,7 +266,25 @@ function check_input($data) {
                 document.getElementById("result").innerHTML = '';
             }
 
-            checkTextInput()
+            checkTextInput();
+        }
+
+        // vanilla js XMLHTTP
+        function check_username_vanilla() {
+            var username = document.getElementById("username").value
+            //alert('all good '+username)
+            if (!username) {
+                document.getElementById("result").innerHTML = '';
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("result").innerHTML = this.responseText;
+                    }
+                }
+                xmlhttp.open("GET", "check_username_db.php?username="+username, true);
+                xmlhttp.send();
+            }
         }
 
     </script>
