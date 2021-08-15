@@ -7,31 +7,7 @@ include 'templates/base2.php';
 <html>
 <head>
     <title>Create New Tracker</title>
-    <style>
-
-        .make-it-center{
-            margin: auto;
-            width: 50%;
-        }
-
-        body{
-            color: white;
-
-        }
-
-        .lefterr{
-            margin-left: -10%;
-        }
-
-        .required:after {
-            content:"*";
-            color: red;
-        }
-        .error{
-            color: red;
-        }
-
-    </style>
+    <script src="assets/js/tracker.js"></script>
 </head>
 <body>
 
@@ -78,16 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $arra = getAllUserAccount();
         foreach($arra as $item) { //foreach element in $arr
             if ($acc_username === $item['Username']) {
-                    $user_found = true;
-                    if (createNewTracker($purl, $acc_username, $orderQty)) {
-                        echo "<br><div style='color: green; text-align: center'> Successfully submitted! </br></div>";
-                        echo "<div style='color: green; text-align: center'> Whenever there's a change of stock status (eg In-Stock/Stock-Out) You will get notified.</br></div>";
-                    }
+                $user_found = true;
+                if (createNewTracker($purl, $acc_username, $orderQty)) {
+                    echo "<br><div style='color: green; text-align: center'> Successfully submitted! </br></div>";
+                    echo "<div style='color: green; text-align: center'> Whenever there's a change of stock status (eg In-Stock/Stock-Out) You will get notified.</br></div>";
                 }
+            }
         }
-
     }
-
 }
 
 function check_input($data) {
@@ -103,33 +77,26 @@ $allUsers = getAllUserAccount()
 
 <div class="container">
     <h2 class="text-center">Add a stock tracker for an Account</h2>
-    <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form class="form" name="add_tracker" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <label for="acc_username">Select an account:</label>
         <select name="acc_username" id="acc_username">
             <?php
-
-            foreach ($allUsers as $item) { //foreach element in $arr
-                if ($item['acc_group'] !== 'Admin' && $item['acc_group'] !== 'Support') {
-                    echo "<option>" .$item['Username']. "</option>";
+                foreach ($allUsers as $item) { //foreach element in $arr
+                    if ($item['acc_group'] !== 'Admin' && $item['acc_group'] !== 'Support') {
+                        echo "<option>" .$item['Username']. "</option>";
+                    }
                 }
-
-            }
-
             ?>
         </select> <br><br>
-        Enter Product URL: <input type="text" name="purl" value="<?php echo $purl;?>">
-        <span class="error">* <?php echo $pUrlErr;?></span>
+        Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
+        <span class="error">* <?php echo $pUrlErr;?></span> <div id="result"></div>
         Enter Order Quantity: <input type="number" name="order_qty" value="<?php echo $orderQty;?>">
         <span class="error">* <?php echo $pOrdrQtyErr;?></span>
         <br><br>
 
-        <button type="submit" name="submit" value="Submit"> Submit </button>
+        <button type="submit" id="sub_btn" disabled name="submit" value="Submit">Submit</button>
 
     </form>
-
 </div>
-
-
 </body>
-
 </html>

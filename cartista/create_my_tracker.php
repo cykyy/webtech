@@ -84,7 +84,7 @@ function check_input($data) {
         <h2 class="text-center">Track New Product Stock</h2>
         <form class="form" method="post" name="add_tracker" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             Enter Product URL: <input type="text" onkeyup="checkTextInput()" name="purl" value="<?php echo $purl;?>">
-            Order Quantity: <input type="text" onkeyup="checkTextInput()" name="order_qty" value=1>
+            Order Quantity: <input type="text" name="order_qty" value=1>
             <span class="error">* <?php echo $pUrlErr;?></span>
             <div id="result"></div>
             <br><br>

@@ -5,28 +5,9 @@ require_once 'controller/registrationIncludes.php'
 <html>
 <head>
     <title>Registration</title>
-
-    <style>
-        body{
-            color: white;
-
-        }
-        .required:after {
-            content:"*";
-            color: red;
-        }
-        .error{
-            color: red;
-        }
-
-    </style>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
-        function validateName(){
-
-        }
         function validateForm() {
-            alert('test')
             let usrnm = document.forms["reg_form"]["username"].value;
             let passwrd = document.forms["reg_form"]["password"].value;
             let name = document.forms["reg_form"]["name"].value;
@@ -85,12 +66,11 @@ require_once 'controller/registrationIncludes.php'
             let gender = document.forms["reg_form"]["gender"].value;
             let dob = document.forms["reg_form"]["dob"].value;
             //alert('test')
-            document.getElementById("sub_btn").hidden = !(usrnm !== "" && passwrd !== "" && name !== "" && email !== "" && cnfrmPass !== "" && gender !== "" && dob !== "");
+            document.getElementById("sub_btn").disabled = !(usrnm !== "" && passwrd !== "" && name !== "" && email !== "" && cnfrmPass !== "" && gender !== "" && dob !== "");
         }
 
         // jQuery version
         function check_username(){
-            //alert('testtttt')
             // Get value from input on the page
             var username = jQuery("#username").val();
             if (username) {
@@ -155,44 +135,42 @@ require_once 'controller/registrationIncludes.php'
             echo $error;
         }
         ?>
-        <br />
-        <label>Name</label>  <span class="error">* <?php echo $nameErr;?></span>
-        <input type="text" onkeyup="checkTextInput()" name="name" class="form-control" value="<?php echo $name;?>" /> <br/><br/>
-        <label>E-mail</label> <span class="error">* <?php echo $emailErr;?></span>
+        <div id="res_text"></div>
 
-        <input type="text" name="email" onkeyup="checkTextInput()" class="form-control" value="<?php echo $email;?>" /><br /><br/>
+        <label>Name</label>  <span class="error">* <?php echo $nameErr;?></span>
+        <input type="text" onchange="validedName()" id="name" name="name" class="form-control" value="<?php echo $name;?>" /> <br/><br/>
+        <div class="error" id="name_res"></div>
+
+        <label>E-mail</label> <span class="error">* <?php echo $emailErr;?></span>
+        <input type="text" name="email" class="form-control" value="<?php echo $email;?>" /><br /><br/>
 
         <label>User Name</label>  <span class="error">* <?php echo $userErr;?></span>
-        <input type="text" id="username" name="username" onkeyup="check_username()" class="form-control" value="<?php echo $username;?>" /> <br/>
+        <input type="text" id="username" name="username" class="form-control" value="<?php echo $username;?>" /> <br/>
         <div id="result"></div><br/>
 
         <label>Password</label>  <span class="error">* <?php echo $passErr;?></span>
 
-        <input type="password" name="password" onkeyup="checkTextInput()" class="form-control" /><br /><br/>
+        <input type="password" name="password" class="form-control" /><br /><br/>
         <label>Confirm Password</label>  <span class="error">* <?php echo $confrmPassErr;?></span>
 
-        <input type="password" name = "cnfrmPass" onkeyup="checkTextInput()" class="form-control" /><br /><br/>
+        <input type="password" name = "cnfrmPass" class="form-control" /><br /><br/>
 
         <fieldset>
             <legend>Gender</legend>  <span class="error">* <?php echo $genderErr;?></span>
-            <input type="radio" id="male" name="gender" oninput="checkTextInput()" value="male" <?php if (isset($gender)){ if ($gender === 'male'){ echo 'checked';}}?> >
+            <input type="radio" id="male" name="gender"  value="male" <?php if (isset($gender)){ if ($gender === 'male'){ echo 'checked';}}?> >
             <label for="male">Male</label>
 
-            <input type="radio" id="female" name="gender" oninput="checkTextInput()" value="female" <?php if (isset($gender)){ if ($gender === 'female'){ echo 'checked';}}?> >
+            <input type="radio" id="female" name="gender" value="female" <?php if (isset($gender)){ if ($gender === 'female'){ echo 'checked';}}?> >
             <label for="female">Female</label>
 
-            <input type="radio" id="other" name="gender" oninput="checkTextInput()" value="other" <?php if (isset($gender)){ if ($gender === 'other'){ echo 'checked';}}?> >
+            <input type="radio" id="other" name="gender" value="other" <?php if (isset($gender)){ if ($gender === 'other'){ echo 'checked';}}?> >
             <label for="other">Other</label><br>
         </fieldset> <br>
 
             <legend>Date of Birth:</legend>  <span class="error">* <?php echo $dobErr;?></span>
-            <input type="date" name="dob" oninput="checkTextInput()" value="<?php echo $dob;?>"> <br><br>
+            <input type="date" name="dob" value="<?php echo $dob;?>"> <br><br>
 
-
-
-        <span id="res_text"></span> <br>
-
-        <button type="submit" id="sub_btn" name="submit" hidden value="Register">Register</button><br />
+        <button type="submit" id="sub_btn"  name="submit" value="Register">Register</button><br />
         <?php
         if(isset($message))
         {
