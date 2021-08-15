@@ -49,7 +49,7 @@
        <a href="#contact">Contact</a>
        <a href="#about">About</a>
        <label style="float: right; margin: 10px 10px">Search</label>
-                <input style="float: right; margin: 10px 5px 10px 10px" id="searcher" onkeyup="search()" type="text">
+        <input style="float: right; margin: 10px 5px 10px 10px" id="searcher" onkeyup="search()" type="text">
        
       ';
         }
