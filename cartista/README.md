@@ -1,5 +1,5 @@
 # Cartista
-### Cartista allows you to track products and take actions upon pre-defined rules.
+### Cartista allows you to track products and take actions based on pre-defined rules.
 
 Features:
 ```
