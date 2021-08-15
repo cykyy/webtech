@@ -31,3 +31,19 @@ body{
 .text-center {
     text-align: center;
 }
+
+.search_res_cl {
+    position: absolute;
+    margin-right: 5%;
+    left: 77%;
+    background-color: #3e3c3c;
+}
+
+@media only screen and (max-width: 600px) {
+    .search_res_cl {
+        position: absolute;
+        margin-right: 5%;
+        left: 30%;
+        background-color: #3e3c3c;
+    }
+}

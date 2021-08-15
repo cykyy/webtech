@@ -232,3 +232,17 @@ function updateProfilePictureAbsPath($username, $absPath){
     $conn = null;
     return true;
 }
+
+function getTrackersFromDB(){
+    $conn = db_conn();
+    $selectQuery = "SELECT * FROM trackers";
+    try {
+        $stmt = $conn->prepare($selectQuery);
+        $stmt->execute([]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+    $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $row;
+}

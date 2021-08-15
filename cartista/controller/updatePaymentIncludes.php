@@ -1,5 +1,4 @@
 <?php
-
 require_once 'controller/payment.php';
 // define variables and set to empty values
 $userErr = $passErr = "";

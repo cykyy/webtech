@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="assets/css/nav.css">
 <link rel="stylesheet" type="text/css" href="assets/css/extras.css">
+<script type="text/javascript" src="assets/js/searcher.js"></script>
 <div class="topnav">
     <a class="active" href="./index.php">Home</a>
 
@@ -25,6 +26,8 @@
                       <a href="./logout.php">Logout</a>
                     </div>
                   </div>
+                  <label style="float: right; margin: 10px 10px">Search</label>
+                <input style="float: right; margin: 10px 5px 10px 10px" id="searcher" onkeyup="search()" type="text">
             ';
         } else {
             echo '
@@ -45,6 +48,9 @@
        <a href="./logout.php">Logout</a>
        <a href="#contact">Contact</a>
        <a href="#about">About</a>
+       <label style="float: right; margin: 10px 10px">Search</label>
+                <input style="float: right; margin: 10px 5px 10px 10px" id="searcher" onkeyup="search()" type="text">
+       
       ';
         }
     } else {
@@ -58,6 +64,6 @@
     ?>
 
 </div>
-
+<div id="search_res" class="search_res_cl" style=""></div>
 
 

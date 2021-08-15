@@ -40,12 +40,6 @@ if (!isset($_SESSION['uname'])) {
     }
 }
 
-// $strJsonFileContents = file_get_contents("data.json");
-// var_dump($strJsonFileContents);
-
-// $arra = json_decode($strJsonFileContents);
-// $is_ad = which_group($arra);
-
 require_once 'controller/tracker.php';
 $arra = getAllTrackers();
 
