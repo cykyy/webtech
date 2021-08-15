@@ -1,0 +1,81 @@
+/* This css file is for login */
+
+/* importing a google font */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/* prettifying the login form */
+.login-page {
+  z-index: 1;
+  width: 350px; /* sets the width */
+  padding: 2% 0 0; /* gives a few space */
+  margin: auto; /* makes the form center */
+}
+
+.form {
+  color: white; /* form text color */
+  position: relative;
+  z-index: 1; /* Z-indexing for overlapping issue e.g. with footer */
+  background: #243c6c; /* form bg color  */
+  max-width: 360px;
+  margin: 0 auto 100px; /* top 0 left & right auto and bottom 100px  */
+  padding: 45px; /* gives a little bit padding/inside space  */
+  text-align: center;  /* Centers all text */
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);  /* Shadow around the form */
+}
+
+a{
+  color: white;  /* a:link color white */
+}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2; /* input field bg */
+  width: 100%;
+  border: 0;
+  margin: 0 0 5px; /* some space */
+  padding: 15px; /* input field space space */
+  box-sizing: border-box;  /* include the padding and border in an element's total width and height */
+  font-size: 14px;
+}
+
+/* login button */
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;  /* uppercase the login button */
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;  /* sets the weight */
+  border: 0;  /* sets no border */
+  padding: 15px; /* inside space*/
+  color: #FFFFFF; /* color text */
+  font-size: 14px;
+  cursor: pointer; /* hand cursor */
+}
+
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047; /* changes the color when mousing */
+}
+
+/* setting the bg of the page */
+body {
+  background: #8DC26FFF; /* fallback for old browsers */
+  background: linear-gradient(to left, #090f1f, #1c1f2d);
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 350px; /* sets the width */
+  padding: 2% 0 0; /* gives a few space */
+  margin: auto; /* makes the form center */
+}
+/*
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+ */

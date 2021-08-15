@@ -1,0 +1,27 @@
+/* for accounts.php */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow-wrap: break-word;
+    margin-bottom: 5%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #1d3858;
+}
+a{
+    color: white;
+}
+
+/* accounts.php style end here
+*/
+
+
