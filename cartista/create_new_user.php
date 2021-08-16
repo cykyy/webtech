@@ -10,6 +10,55 @@ require_once 'controller/createNewUserIncludes.php'
 <head>
     <title>Registration</title>
     <script>
+        function validateForm() {
+            let usrnm = document.forms["reg_form"]["username"].value;
+            let passwrd = document.forms["reg_form"]["password"].value;
+            let name = document.forms["reg_form"]["name"].value;
+            let email = document.forms["reg_form"]["email"].value;
+            let cnfrmPass = document.forms["reg_form"]["cnfrmPass"].value;
+            let gender = document.forms["reg_form"]["gender"].value;
+            let dob = document.forms["reg_form"]["dob"].value;
+            let resp;
+            if (name === "") {
+                alert("Name must be filled out");
+                document.getElementById("res_text").innerHTML = "Name must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            }else if (email === "") {
+                alert("Email must be filled out");
+                document.getElementById("res_text").innerHTML = "Email must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return  false;
+            }else if (gender === "") {
+                alert("Gender must be filled out");
+                document.getElementById("res_text").innerHTML = "Gender must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            }else if (dob === "") {
+                alert("Date of Birth must be filled out");
+                document.getElementById("res_text").innerHTML = "Date of Birth must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            }else if (usrnm === "") {
+                alert("Username must be filled out");
+                document.getElementById("res_text").innerHTML = "Username must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            } else if (passwrd === ""){
+                alert("Password must be filled out");
+                document.getElementById("res_text").innerHTML = "Password must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            }else if (cnfrmPass === "") {
+                alert("Confirm password must be filled out");
+                document.getElementById("res_text").innerHTML = "Confirm password must be filled out";
+                document.getElementById("res_text").style.color="red";
+                return false;
+            }else{
+                document.getElementById("res_text").innerHTML = x;
+                document.getElementById("res_text").style.color="black";
+            }
+        }
         // vanilla js XMLHTTP
         function check_username_vanilla() {
             var username = document.getElementById("username").value
@@ -51,13 +100,14 @@ require_once 'controller/createNewUserIncludes.php'
 <div class="text-center">
 <div class="container" style="width:500px;">
     <h2 class="text-center">Create a New Account</h2>
-    <form method="post" class="form">
+    <form method="post" onsubmit="return validateForm()" name="reg_form" class="form">
         <?php
         if(isset($error))
         {
             echo $error;
         }
         ?>
+        <div id="res_text"></div>
         <label>Name</label>  <span class="error">* <?php echo $nameErr;?></span>
         <input type="text" id="name" onchange="validedName()" name="name" class="form-control" value="<?php echo $name;?>" />
         <div id="name_res"></div><br>
